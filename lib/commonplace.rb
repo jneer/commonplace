@@ -94,7 +94,8 @@ class Page
 	
 	# return html for markdown formatted page content
 	def content
-		return Redcarpet.new(parse_links(@content)).to_html
+		markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
+		return markdown.render(parse_links(@content))
 	end
 	
 	# return raw page content
