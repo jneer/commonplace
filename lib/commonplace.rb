@@ -140,7 +140,8 @@ class Folder
 			filename = file.split('/').last.chomp('.md')
 			list << "- <a class=\"internal\" href=\"/#{@permalink + '/' + filename}\">" + filename.gsub('_', ' ') + "</a>"
 		end
-		Redcarpet.new(list.join("\n")).to_html.to_s
+		markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
+		markdown.render(list.join("\n")).to_s
 	end
 end
 
